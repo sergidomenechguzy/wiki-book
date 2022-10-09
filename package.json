@@ -9,8 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.12",
     "daisyui": "^2.31.0",
     "gray-matter": "^4.0.3",
+    "lodash.deburr": "^4.1.0",
+    "nanoid": "^4.0.0",
     "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -18,6 +21,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.7",
+    "@types/lodash.deburr": "^4.1.7",
     "@types/node": "18.8.3",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
