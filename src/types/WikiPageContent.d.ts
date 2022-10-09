@@ -1,0 +1,3 @@
+type WikiPageContent = {
+  content: string;
+};

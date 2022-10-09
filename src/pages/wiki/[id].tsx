@@ -1,17 +1,14 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import PageLayout from "../../components/PageLayout";
 import TagList from "../../components/TagList";
 import { getAllWikiPageIds, getWikiPage } from "../../lib/wikiPages";
 
 interface WikiPageProps {
-  wikiPageData: {
-    id: string;
-    title: string;
-    tags: string[];
-    content: string;
-  };
+  wikiPageData: WikiPageFrontMatter & WikiPageContent;
 }
 
 const WikiPage: NextPage<WikiPageProps> = ({ wikiPageData }) => {
@@ -20,11 +17,31 @@ const WikiPage: NextPage<WikiPageProps> = ({ wikiPageData }) => {
       <Head>
         <title>Wiki - {wikiPageData.title}</title>
       </Head>
-      <h1 className="text-4xl mb-4">{wikiPageData.title}</h1>
-      <TagList wikiPageData={wikiPageData} />
+      <div className="flex flex-row justify-between flex-wrap">
+        <div>
+          <h1 className="text-4xl mb-4">{wikiPageData.title}</h1>
+          <TagList wikiPageData={wikiPageData} />
+        </div>
+        {wikiPageData.icon ? (
+          <Image
+            src={wikiPageData.icon}
+            alt={wikiPageData.icon}
+            width="80"
+            height="80"
+          />
+        ) : null}
+      </div>
       <div className="divider -mx-2" />
       <article className="prose lg:prose-lg max-w-6xl">
-        <ReactMarkdown>{wikiPageData.content}</ReactMarkdown>
+        <ReactMarkdown
+          components={{
+            a: ({ children, href }) => (
+              <Link href={href || ""}>{children[0]}</Link>
+            ),
+          }}
+        >
+          {wikiPageData.content}
+        </ReactMarkdown>
       </article>
     </PageLayout>
   );

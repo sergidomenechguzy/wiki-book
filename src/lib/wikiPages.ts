@@ -17,6 +17,18 @@ export const getAllWikiPageIds = () => {
   });
 };
 
+const buildFrontMatter = (
+  id: string,
+  matterResult: matter.GrayMatterFile<string>
+): WikiPageFrontMatter => {
+  return {
+    id: id,
+    title: matterResult.data.title,
+    tags: matterResult.data.tags || [],
+    icon: matterResult.data.icon || null,
+  };
+};
+
 export const getAllWikiPageData = () => {
   const fileNames = fs.readdirSync(wikiPagesDirectory);
 
@@ -54,11 +66,10 @@ export const getAllWikiPageData = () => {
     const fullPath = path.join(wikiPagesDirectory, fileName);
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const matterResult = matter(fileContents);
-    const wikiPageFrontMatter: WikiPageFrontMatter = {
-      id: fileName.replace(/\.md$/, ""),
-      title: matterResult.data.title,
-      tags: matterResult.data.tags,
-    };
+    const wikiPageFrontMatter = buildFrontMatter(
+      fileName.replace(/\.md$/, ""),
+      matterResult
+    );
     const firstLetter = deburr(fileName[0]) as keyof typeof pages;
     pages[firstLetter].push(wikiPageFrontMatter);
   });
@@ -66,14 +77,16 @@ export const getAllWikiPageData = () => {
   return pages;
 };
 
-export const getWikiPage = (id: string) => {
+export const getWikiPage = (
+  id: string
+): WikiPageFrontMatter & WikiPageContent => {
   const fullPath = path.join(wikiPagesDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const matterResult = matter(fileContents);
+  const wikiPageFrontMatter = buildFrontMatter(id, matterResult);
 
   return {
-    id,
-    ...matterResult.data,
+    ...wikiPageFrontMatter,
     content: matterResult.content,
   };
 };
