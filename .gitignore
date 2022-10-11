@@ -35,8 +35,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# wiki entries
-/wiki_pages
+# content
+/content
 
 # images
 public/assets
