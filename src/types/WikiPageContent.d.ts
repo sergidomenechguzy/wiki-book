@@ -1,3 +1,0 @@
-type WikiPageContent = {
-  content: string;
-};

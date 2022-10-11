@@ -3,7 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import deburr from "lodash.deburr";
 
-const wikiPagesDirectory = path.join(process.cwd(), "wiki_pages");
+const wikiPagesDirectory = path.join(process.cwd(), "content/wiki_pages");
 
 export const getAllWikiPageIds = () => {
   const fileNames = fs.readdirSync(wikiPagesDirectory);
@@ -77,9 +77,7 @@ export const getAllWikiPageData = () => {
   return pages;
 };
 
-export const getWikiPage = (
-  id: string
-): WikiPageFrontMatter & WikiPageContent => {
+export const getWikiPage = (id: string): WikiPageFrontMatter & Content => {
   const fullPath = path.join(wikiPagesDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const matterResult = matter(fileContents);

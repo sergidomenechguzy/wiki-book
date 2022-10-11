@@ -7,10 +7,10 @@ import PageList from "../../components/PageList";
 import Search from "../../components/Search";
 import { getAllWikiPageData } from "../../lib/wikiPages";
 
-interface PageOverviewPageProps {
+interface IPageOverviewPageProps {
   wikiPageLists: WikiPageLists;
 }
-const PageOverviewPage: NextPage<PageOverviewPageProps> = ({
+const PageOverviewPage: NextPage<IPageOverviewPageProps> = ({
   wikiPageLists,
 }) => {
   const [denseUi, setDenseUi] = useState(false);

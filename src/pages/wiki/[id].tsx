@@ -1,17 +1,16 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
-import ReactMarkdown from "react-markdown";
+import Markdown from "../../components/Markdown";
 import PageLayout from "../../components/PageLayout";
 import TagList from "../../components/TagList";
 import { getAllWikiPageIds, getWikiPage } from "../../lib/wikiPages";
 
-interface WikiPageProps {
-  wikiPageData: WikiPageFrontMatter & WikiPageContent;
+interface IWikiPageProps {
+  wikiPageData: WikiPageFrontMatter & Content;
 }
 
-const WikiPage: NextPage<WikiPageProps> = ({ wikiPageData }) => {
+const WikiPage: NextPage<IWikiPageProps> = ({ wikiPageData }) => {
   return (
     <PageLayout>
       <Head>
@@ -33,15 +32,7 @@ const WikiPage: NextPage<WikiPageProps> = ({ wikiPageData }) => {
       </div>
       <div className="divider -mx-2" />
       <article className="prose lg:prose-lg max-w-6xl">
-        <ReactMarkdown
-          components={{
-            a: ({ children, href }) => (
-              <Link href={href || ""}>{children[0]}</Link>
-            ),
-          }}
-        >
-          {wikiPageData.content}
-        </ReactMarkdown>
+        <Markdown content={wikiPageData.content} />
       </article>
     </PageLayout>
   );
