@@ -76,7 +76,7 @@ const Drawer = ({ children }: IDrawerProps) => {
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
-        <div className="w-full navbar bg-base-100 sticky top-0 bg-opacity-80 backdrop-blur transition-all duration-100 lg:hidden">
+        <div className="w-full navbar z-50 bg-base-100 sticky top-0 bg-opacity-80 backdrop-blur transition-all duration-100 lg:hidden">
           <div className="flex-none lg:hidden">
             <label htmlFor="my-drawer" className="btn btn-square btn-ghost">
               <svg
