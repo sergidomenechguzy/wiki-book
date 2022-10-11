@@ -5,8 +5,13 @@ import { nanoid } from "nanoid";
 import {
   HomeIcon as HomeIconOutlined,
   DocumentTextIcon as DocumentTextIconOutlined,
+  CalendarIcon as CalendarIconOutlined,
 } from "@heroicons/react/24/outline";
-import { HomeIcon, DocumentTextIcon } from "@heroicons/react/24/solid";
+import {
+  HomeIcon,
+  DocumentTextIcon,
+  CalendarIcon,
+} from "@heroicons/react/24/solid";
 
 interface IDrawerProps {
   children: ReactNode;
@@ -56,6 +61,13 @@ const Drawer = ({ children }: IDrawerProps) => {
       label: "Pages",
       icon: <DocumentTextIconOutlined className="h-5 w-5" />,
       activeIcon: <DocumentTextIcon className="h-5 w-5" />,
+    },
+    {
+      id: nanoid(5),
+      href: "/timelines",
+      label: "Timelines",
+      icon: <CalendarIconOutlined className="h-5 w-5" />,
+      activeIcon: <CalendarIcon className="h-5 w-5" />,
     },
   ];
 
