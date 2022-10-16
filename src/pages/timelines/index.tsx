@@ -1,12 +1,13 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import PageLayout from "../../components/PageLayout";
+import { buildTitle } from "../../lib/utils";
 
 const TimelinesPage: NextPage = () => {
   return (
     <PageLayout>
       <Head>
-        <title>Wiki - All Timelines</title>
+        <title>{buildTitle("All Timelines")}</title>
       </Head>
       <h1 className="text-5xl">All Timelines</h1>
     </PageLayout>

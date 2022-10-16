@@ -5,6 +5,7 @@ import DensityToggle from "../../components/DensitySwap";
 import PageLayout from "../../components/PageLayout";
 import PageList from "../../components/PageList";
 import Search from "../../components/Search";
+import { buildTitle } from "../../lib/utils";
 import { getAllWikiPageData } from "../../lib/wikiPages";
 
 interface IPageOverviewPageProps {
@@ -18,7 +19,7 @@ const PageOverviewPage: NextPage<IPageOverviewPageProps> = ({
   return (
     <PageLayout>
       <Head>
-        <title>Wiki - All Pages</title>
+        <title>{buildTitle("All Pages")}</title>
       </Head>
       {/* <h1 className="text-5xl">All Pages</h1> */}
       <Search />

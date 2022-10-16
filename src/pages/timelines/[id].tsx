@@ -6,6 +6,7 @@ import {
   getAllTimelinePageIds,
   getTimelinePage,
 } from "../../lib/timelinePages";
+import { buildTitle } from "../../lib/utils";
 
 interface ITimelinePageProps {
   timelinePageData: TimelinePage;
@@ -15,7 +16,7 @@ const TimelinePage: NextPage<ITimelinePageProps> = ({ timelinePageData }) => {
   return (
     <PageLayout>
       <Head>
-        <title>Wiki - {timelinePageData.title}</title>
+        <title>{buildTitle(timelinePageData.title)}</title>
       </Head>
       <h1 className="text-4xl mb-4">{timelinePageData.title}</h1>
       <div className="divider -mx-2" />

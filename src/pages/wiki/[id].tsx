@@ -4,6 +4,7 @@ import Image from "next/image";
 import Markdown from "../../components/Markdown";
 import PageLayout from "../../components/PageLayout";
 import TagList from "../../components/TagList";
+import { buildTitle } from "../../lib/utils";
 import { getAllWikiPageIds, getWikiPage } from "../../lib/wikiPages";
 
 interface IWikiPageProps {
@@ -14,7 +15,7 @@ const WikiPage: NextPage<IWikiPageProps> = ({ wikiPageData }) => {
   return (
     <PageLayout>
       <Head>
-        <title>Wiki - {wikiPageData.title}</title>
+        <title>{buildTitle(wikiPageData.title)}</title>
       </Head>
       <div className="flex flex-row justify-between flex-wrap">
         <div>
