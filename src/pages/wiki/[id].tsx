@@ -32,7 +32,7 @@ const WikiPage: NextPage<IWikiPageProps> = ({ wikiPageData }) => {
         ) : null}
       </div>
       <div className="divider -mx-2" />
-      <article className="prose lg:prose-lg max-w-6xl">
+      <article className="prose lg:prose-lg max-w-full">
         <Markdown content={wikiPageData.content} />
       </article>
     </PageLayout>
