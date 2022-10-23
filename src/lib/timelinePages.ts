@@ -31,7 +31,7 @@ const buildFrontMatter = (
   return {
     id: id,
     title: matterResult.data.title,
-    startDate: matterResult.data.startDate || null,
+    date: matterResult.data.date || null,
     icon: matterResult.data.icon || null,
     position: matterResult.data.position || "center",
   };

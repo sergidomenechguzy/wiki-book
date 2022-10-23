@@ -1,7 +1,7 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import PageLayout from "../../components/PageLayout";
-import Timeline from "../../components/Timeline";
+import Timeline from "../../components/Timeline/Timeline";
 import {
   getAllTimelinePageIds,
   getTimelinePage,
