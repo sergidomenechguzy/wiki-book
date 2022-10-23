@@ -35,10 +35,10 @@ const ListItem = ({
   return (
     <li>
       <Link href={href}>
-        <div className={active ? "active" : ""}>
+        <a className={active ? "active" : ""}>
           {active ? activeIcon : icon}
           {label}
-        </div>
+        </a>
       </Link>
     </li>
   );
@@ -100,10 +100,9 @@ const Drawer = ({ children }: IDrawerProps) => {
       <div className="drawer-side">
         <label htmlFor="my-drawer" className="drawer-overlay"></label>
         <aside className="w-72 lg:w-60 bg-base-200">
-          {/* <h1 className="text-3xl font-bold p-4"> */}
-          <h1 className="btn btn-ghost normal-case text-3xl m-4">
-            <Link href="/">Wiki</Link>
-          </h1>
+          <Link href="/">
+            <a className="btn btn-ghost normal-case text-3xl m-4">Wiki</a>
+          </Link>
           <ul className="menu overflow-y-auto p-4 py-0">
             {/* Sidebar */}
             {drawerElements.map((drawerElement) => (
