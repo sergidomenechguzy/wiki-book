@@ -9,8 +9,9 @@ import { buildTitle } from "../../lib/utils";
 import { getAllWikiPageData } from "../../lib/wikiPages";
 
 interface IPageOverviewPageProps {
-  wikiPageLists: WikiPageLists;
+  wikiPageLists: LetterLists<WikiPageFrontMatter>;
 }
+
 const PageOverviewPage: NextPage<IPageOverviewPageProps> = ({
   wikiPageLists,
 }) => {
@@ -24,7 +25,7 @@ const PageOverviewPage: NextPage<IPageOverviewPageProps> = ({
       {/* <h1 className="text-5xl">All Pages</h1> */}
       <Search />
       <DensityToggle value={denseUi} onChange={setDenseUi} />
-      <PageList wikiPageLists={wikiPageLists} denseUi={denseUi} />
+      <PageList pageLists={wikiPageLists} denseUi={denseUi} />
     </PageLayout>
   );
 };

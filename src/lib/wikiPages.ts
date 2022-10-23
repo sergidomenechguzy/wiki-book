@@ -24,6 +24,7 @@ const buildFrontMatter = (
   return {
     id: id,
     title: matterResult.data.title,
+    route: "/wiki",
     tags: matterResult.data.tags || [],
     icon: matterResult.data.icon || null,
   };
@@ -32,7 +33,7 @@ const buildFrontMatter = (
 export const getAllWikiPageData = () => {
   const fileNames = fs.readdirSync(wikiPagesDirectory);
 
-  const pages: WikiPageLists = {
+  const pages: LetterLists<WikiPageFrontMatter> = {
     "#": [],
     a: [],
     b: [],

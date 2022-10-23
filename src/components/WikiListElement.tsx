@@ -1,24 +1,28 @@
 import Image from "next/image";
 import Link from "next/link";
 
-interface IWikiListElementProps {
-  wikiPageData: WikiPageFrontMatter;
+interface IWikiListElementProps<T> {
+  data: T;
 }
 
-const WikiListElement = ({ wikiPageData }: IWikiListElementProps) => {
+const WikiListElement = <
+  T extends {
+    id: string;
+    title: string;
+    route: string;
+    icon?: string | null;
+  }
+>({
+  data,
+}: IWikiListElementProps<T>) => {
   return (
-    <li key={wikiPageData.id}>
-      <Link href={`/wiki/${wikiPageData.id}`}>
+    <li key={data.id}>
+      <Link href={`${data.route}/${data.id}`}>
         <a className="hover:bg-neutral-focus">
-          {wikiPageData.icon ? (
-            <Image
-              src={wikiPageData.icon}
-              alt={wikiPageData.icon}
-              width="20"
-              height="20"
-            />
+          {data.icon ? (
+            <Image src={data.icon} alt={data.icon} width="20" height="20" />
           ) : null}
-          {wikiPageData.title}
+          {data.title}
         </a>
       </Link>
     </li>

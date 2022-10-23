@@ -2,19 +2,22 @@ import LetterAvatar from "./LetterAvatar";
 import WikiCard from "./WikiCard";
 import WikiListElement from "./WikiListElement";
 
-interface IListProps {
-  wikiPageList: WikiPageFrontMatter[];
+interface IListProps<T> {
+  pageList: T[];
   denseUi: boolean;
 }
 
-const List = ({ wikiPageList, denseUi }: IListProps) => {
+const List = <T extends { id: string; title: string; route: string }>({
+  pageList,
+  denseUi,
+}: IListProps<T>) => {
   if (denseUi) {
     return (
       <ul className="menu menu-compact bg-neutral w-full p-2 rounded-box">
-        {wikiPageList.map((pageData) => (
+        {pageList.map((pageData) => (
           <WikiListElement
             key={`${pageData.id}-list-element`}
-            wikiPageData={pageData}
+            data={pageData}
           />
         ))}
       </ul>
@@ -23,26 +26,29 @@ const List = ({ wikiPageList, denseUi }: IListProps) => {
 
   return (
     <ul className="flex flex-col gap-4">
-      {wikiPageList.map((pageData) => (
-        <WikiCard key={`${pageData.id}-card`} wikiPageData={pageData} />
+      {pageList.map((pageData) => (
+        <WikiCard key={`${pageData.id}-card`} data={pageData} />
       ))}
     </ul>
   );
 };
 
-interface IPageListProps {
-  wikiPageLists: WikiPageLists;
+interface IPageListProps<T> {
+  pageLists: LetterLists<T>;
   denseUi: boolean;
 }
 
-const PageList = ({ wikiPageLists, denseUi }: IPageListProps) => {
+const PageList = <T extends { id: string; title: string; route: string }>({
+  pageLists,
+  denseUi,
+}: IPageListProps<T>) => {
   return (
     <>
-      {Object.entries(wikiPageLists).map(([key, wikiPages]) =>
-        wikiPages.length === 0 ? null : (
+      {Object.entries(pageLists).map(([key, pages]) =>
+        pages.length === 0 ? null : (
           <div key={`${key}-page-list`}>
             <LetterAvatar label={key.toLocaleUpperCase()} denseUi={denseUi} />
-            <List wikiPageList={wikiPages} denseUi={denseUi} />
+            <List pageList={pages} denseUi={denseUi} />
           </div>
         )
       )}

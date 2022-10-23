@@ -1,14 +1,14 @@
 type SizeEnum = "xs" | "sm" | "md" | "lg";
 
 interface ITagListProps {
-  wikiPageData: WikiPageFrontMatter;
+  data: string[];
   size?: SizeEnum;
 }
 
-const TagList = ({ wikiPageData, size = "lg" }: ITagListProps) => {
+const TagList = ({ data, size = "lg" }: ITagListProps) => {
   return (
     <div>
-      {wikiPageData.tags.map((tag) => (
+      {data.map((tag) => (
         <div key={tag} className={`badge badge-outline badge-${size} m-1 pb-1`}>
           {tag}
         </div>

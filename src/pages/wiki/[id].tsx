@@ -20,7 +20,7 @@ const WikiPage: NextPage<IWikiPageProps> = ({ wikiPageData }) => {
       <div className="flex flex-row justify-between flex-wrap">
         <div>
           <h1 className="text-4xl mb-4">{wikiPageData.title}</h1>
-          <TagList wikiPageData={wikiPageData} />
+          <TagList data={wikiPageData.tags} />
         </div>
         {wikiPageData.icon ? (
           <Image

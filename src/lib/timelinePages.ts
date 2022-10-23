@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import deburr from "lodash.deburr";
 
 const timelinePagesDirectory = path.join(
   process.cwd(),
@@ -36,6 +37,54 @@ const buildFrontMatter = (
   };
 };
 
+export const getAllTimelinePageData = () => {
+  const fileNames = fs.readdirSync(timelinePagesDirectory);
+
+  const timelines: LetterLists<TimelinePage> = {
+    "#": [],
+    a: [],
+    b: [],
+    c: [],
+    d: [],
+    e: [],
+    f: [],
+    g: [],
+    h: [],
+    i: [],
+    j: [],
+    k: [],
+    l: [],
+    m: [],
+    n: [],
+    o: [],
+    p: [],
+    q: [],
+    r: [],
+    s: [],
+    t: [],
+    u: [],
+    v: [],
+    w: [],
+    x: [],
+    y: [],
+    z: [],
+  };
+
+  fileNames.forEach((fileName) => {
+    const fullPath = path.join(timelinePagesDirectory, fileName);
+    const pageData = JSON.parse(fs.readFileSync(fullPath, "utf8"));
+
+    const firstLetter = deburr(fileName[0]) as keyof typeof timelines;
+    timelines[firstLetter].push({
+      id: fileName.replace(/\.json$/, ""),
+      ...pageData,
+      route: "/timelines",
+    });
+  });
+
+  return timelines;
+};
+
 export const getTimelinePage = (id: string): TimelinePage => {
   const fullPath = path.join(timelinePagesDirectory, `${id}.json`);
   const pageData = JSON.parse(fs.readFileSync(fullPath, "utf8"));
@@ -55,6 +104,7 @@ export const getTimelinePage = (id: string): TimelinePage => {
   return {
     id,
     title: pageData.title,
+    route: "/timelines",
     entries,
   };
 };
