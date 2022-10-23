@@ -5,7 +5,7 @@ interface ITimelineEntryCardProps {
 }
 
 interface ITimelineBranchProps {
-  position: "left" | "right";
+  position: "left" | "right" | "center";
 }
 
 const positions = {
@@ -18,11 +18,17 @@ const TimelineBranch = ({ position }: ITimelineBranchProps) => {
   return (
     <>
       <div
-        className={`absolute top-0 bottom-0 w-full flex justify-${positions[position]} items-center`}
+        className={`absolute top-0 bottom-0 w-full flex justify-${
+          positions[position]
+        } items-center ${position === "center" && "sm:hidden"}`}
       >
-        <div className="rounded w-1/2 h-1 bg-neutral-content" />
+        <div className="rounded w-full sm:w-1/2 h-1 bg-neutral-content" />
       </div>
-      <div className="absolute top-0 bottom-0 w-full flex justify-center items-center">
+      <div
+        className={`absolute top-0 bottom-0 w-full flex justify-start sm:justify-center items-center ${
+          position === "center" && "sm:hidden"
+        }`}
+      >
         <div className="rounded-full w-5 h-5 border-base-100 border-4 bg-neutral-content" />
       </div>
     </>
@@ -32,14 +38,12 @@ const TimelineBranch = ({ position }: ITimelineBranchProps) => {
 const TimelineEntryCard = ({ entryData }: ITimelineEntryCardProps) => {
   return (
     <div className="w-full py-4 relative">
-      {entryData.position === "left" || entryData.position === "right" ? (
-        <TimelineBranch position={entryData.position} />
-      ) : null}
+      <TimelineBranch position={entryData.position} />
       <div className={`w-full flex justify-${positions[entryData.position]}`}>
-        <div className="card card-compact bg-neutral w-5/12">
+        <div className="card card-compact bg-neutral w-full sm:w-5/12 ml-7 sm:ml-0">
           <div
             className={`card-body ${
-              entryData.position === "center" && "text-center"
+              entryData.position === "center" && "sm:text-center"
             }`}
           >
             {entryData.startDate ? (
