@@ -15,14 +15,12 @@ const TimelineEntryCenterHeader = ({
       {entryData.icon ? (
         <div className="flex flex-row justify-center items-center w-full py-2">
           <div className="flex-grow h-0.5 bg-neutral-content" />
-          <div className="rounded-full border-2 border-neutral-content w-16 h-16 flex justify-center items-center">
-            <Image
-              src={entryData.icon}
-              alt={entryData.icon}
-              width="50"
-              height="50"
-            />
-          </div>
+          <Image
+            src={entryData.icon}
+            alt={entryData.icon}
+            width="64"
+            height="64"
+          />
           <div className="flex-grow h-0.5 bg-neutral-content" />
         </div>
       ) : null}

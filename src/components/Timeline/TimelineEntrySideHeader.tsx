@@ -16,14 +16,12 @@ const TimelineEntrySideHeader = ({
         <TimelineEntryHeaderTitle title={entryData.title} />
       </div>
       {entryData.icon ? (
-        <div className="rounded-full border-2 border-neutral-content w-10 h-10 flex justify-center items-center">
-          <Image
-            src={entryData.icon}
-            alt={entryData.icon}
-            width="36"
-            height="36"
-          />
-        </div>
+        <Image
+          src={entryData.icon}
+          alt={entryData.icon}
+          width="40"
+          height="40"
+        />
       ) : null}
     </div>
   );
